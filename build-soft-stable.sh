@@ -4,10 +4,11 @@ export CFLAGS="-march=native -w -Wno-psabi -D_FILE_OFFSET_BITS=64"
 export CXXFLAGS="-march=native -w -Wno-psabi -D_FILE_OFFSET_BITS=64"
 
 LIBXISF_COMMIT="v0.2.12"
-INDI_COMMIT="v2.0.9"
-INDI_3RD_COMMIT="v2.0.9"
+INDI_COMMIT="v2.1.1"
+INDI_3RD_COMMIT="v2.1.1"
 STELLAR_COMMIT="157092d6f843fb987818bd61f0b14b440eca3146"
-KSTARS_COMMIT="origin/stable-3.7.2"
+KSTARS_COMMIT="origin/stable-3.7.4"
+PHD2_COMMIT="release/v2.6.13"
 
 # you can set custom BUILD_DIR
 BUILD_DIR=${BUILD_DIR:-$HOME}
@@ -87,7 +88,7 @@ cd "$ROOTDIR"
 [ ! -d "phd2" ] && { git clone https://github.com/OpenPHDGuiding/phd2.git || { echo "Failed to clone PHD2"; exit 1; } }
 cd phd2
 git fetch origin
-git switch -d --discard-changes "v2.6.12"
+git switch -d --discard-changes $PHD2_COMMIT
 [ ! -d ../build-phd2 ] && cmake -B ../build-phd2 -DCMAKE_BUILD_TYPE=Release || { echo "PHD2 configuration failed"; exit 1; }
 cd ../build-phd2
 make -j $JOBS || { echo "PHD2 compilation failed"; exit 1; }
